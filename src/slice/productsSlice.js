@@ -8,7 +8,7 @@ let actions = {}
  *         An array of products
 */
 const fetchProducts = () => {
-    const res = fetch('http://localhost:3000/data/products.json');
+    const res = fetch('data/products.json');
     return res.then(res => (res.json()));
 };
 

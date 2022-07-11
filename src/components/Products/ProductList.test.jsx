@@ -1,7 +1,8 @@
 import { unmountComponentAtNode } from 'react-dom';
 import { render } from '@testing-library/react';
+import ProductList from './ProductList';
+import ProductCard from './ProductCard';
 import { act } from 'react-dom/test-utils';
-import Products from '.';
 
 let container = null;
 beforeEach(() => {
@@ -15,8 +16,8 @@ afterEach(() => {
   container = null;
 });
 
-it('renders the Products component', () => {
-  act(() => {
-    render(<Products />, container);
-  });
+it('Test Product Card and its props', () => {
+    act(() => {
+      render(<ProductList products={[]}/>, container)
+    });
 });

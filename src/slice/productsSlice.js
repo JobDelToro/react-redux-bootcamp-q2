@@ -1,4 +1,6 @@
-let actions = {}
+import config from '../config';
+let productsActions = {};
+
 /** 
  * Fetching products data.
  *
@@ -8,10 +10,10 @@ let actions = {}
  *         An array of products
 */
 const fetchProducts = () => {
-    const res = fetch('data/products.json');
+    const res = fetch(`${config.domain}/data/products.json`);
     return res.then(res => (res.json()));
 };
 
-actions = { ...actions, fetchProducts };
+productsActions = { ...productsActions, fetchProducts };
 
-export default actions;
+export default productsActions;

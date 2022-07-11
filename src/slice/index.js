@@ -1,5 +1,11 @@
-import actions from './productsSlice';
+import authActions from './authSlice';
+import productsActions from './productsSlice';
+import ordersActions from './ordersSlice';
 
 export const rootSlice = {
-    fetchProducts: actions.fetchProducts
+    useAuth: authActions.useAuth,
+    login: authActions.login,
+    fetchProducts: productsActions.fetchProducts,
+    getOrders: ordersActions.getOrders,
+    addOrder: ordersActions.addOrder
 };

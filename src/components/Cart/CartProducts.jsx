@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-const CartProducts = ({ orders }) => {
+const CartProducts = ({ orders, updateOrderQuantity, removeProductOrder }) => {
   const renderCartItems = (orders) => {
     return orders.map((product) => (
-      <CartItem key={product.id} product={product} />
+      <CartItem key={product.id} product={product} updateOrderQuantity={updateOrderQuantity} removeProductOrder={removeProductOrder} />
     ));
   };
 

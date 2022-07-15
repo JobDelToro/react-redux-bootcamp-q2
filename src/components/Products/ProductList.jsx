@@ -1,10 +1,12 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
-const ProductList = ({ products, addOrder }) => {
+const ProductList = ({ products, term, addOrder }) => {
 
-    const renderProductsGrid = (products, addOrder) => {
-        return products.map(product => (
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(term));
+
+    const renderProductsGrid = addOrder => {
+        return filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} addOrder={addOrder} />
         ));
     };
@@ -12,7 +14,7 @@ const ProductList = ({ products, addOrder }) => {
     return (
         <div className="container">
             <div className="row">
-            {renderProductsGrid(products, addOrder)}
+            {renderProductsGrid(addOrder)}
             </div>
         </div>
     );

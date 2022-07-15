@@ -20,32 +20,32 @@ const LoginForm = ({ onSubmit, onSubmitAuth0 }) => {
   return (
     <form onSubmit={handleOnSubmit}>
       {/* <!-- Email input --> */}
-      <div class="form-outline mb-4">
-        <input type="text" id="form2Example1" name="email" class="form-control" value={user.email} onChange={handleUserChange} />
-        <label class="form-label" for="form2Example1">
+      <div className="form-outline mb-4">
+        <input type="text" id="form2Example1" name="email" className="form-control" value={user.email} onChange={handleUserChange} />
+        <label className="form-label" htmlFor="form2Example1">
           Email address
         </label>
       </div>
 
       {/* <!-- Password input --> */}
-      <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" name="password" class="form-control" value={user.password} onChange={handleUserChange} />
-        <label class="form-label" for="form2Example2">
+      <div className="form-outline mb-4">
+        <input type="password" id="form2Example2" name="password" className="form-control" value={user.password} onChange={handleUserChange} />
+        <label className="form-label" htmlFor="form2Example2">
           Password
         </label>
       </div>
 
       {/* <!-- Submit button --> */}
-      <div class="d-flex justify-content-center align-items-center">
-        <button type="submit" class="btn btn-block mb-3" style={{ backgroundColor: "#ff8080", color: "#ffffff" }}>
+      <div className="d-flex justify-content-center align-items-center">
+        <button type="submit" className="btn btn-block mb-3" style={{ backgroundColor: "#ff8080", color: "#ffffff" }}>
             Sign in
         </button>
       </div>
 
       {/* <!-- Register buttons --> */}
-      <div class="text-center">
+      <div className="text-center">
         <p>
-          Sign in with ? <button class="btn btn-dark m-3" onClick={() => onSubmitAuth0()}>Auth0</button>
+          Sign in with ? <button className="btn btn-dark m-3" onClick={() => onSubmitAuth0()}>Auth0</button>
         </p>
       </div>
     </form>

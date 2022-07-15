@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const ProtectedAuthRoute = ({ isAuthenticated, component: Component, ...rest }) => {
+const ProtectedLoginRoute = ({ isAuthenticated, component: Component, ...rest }) => {
     return (
         <Route {...rest} component={props => {
-                    if(isAuthenticated === false) {
+                    if(isAuthenticated === true) {
                         return <Redirect exact to={
                             {
-                                pathname: '/login',
+                                pathname: '/products',
                                 state: {
                                     from: props.location
                                 }
@@ -22,4 +22,4 @@ const ProtectedAuthRoute = ({ isAuthenticated, component: Component, ...rest }) 
     );
 };
 
-export default ProtectedAuthRoute;
+export default ProtectedLoginRoute;

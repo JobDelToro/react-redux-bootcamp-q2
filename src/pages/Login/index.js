@@ -1,19 +1,20 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth0 } from "@auth0/auth0-react";
-import { rootSlice } from '../../slice';
+import { useDispatch } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
+import { login } from '../../slice/authSlice';
 
 import LoginForm from '../../components/Login/LoginForm';
 
 const Login = () => {
-  
+
   const history = useHistory();
+  const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
 
   const onSubmit = formValues => {
-    const { login } = rootSlice;
-    login(formValues);
-    history.push('/')
+    dispatch(login(formValues));
+    history.push('/products');
   };
 
   const onSubmitAuth0 = () => {

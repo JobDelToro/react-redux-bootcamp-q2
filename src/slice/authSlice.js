@@ -1,23 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useState } from "react";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import loginApi from "../utils/loginApi";
 
-let authActions = {};
-let auth = {
-    isAuthenticated: false
-};
-
-/**
- * Get user info
- * 
- * @param {}
- * 
- * @return {Object}
- * 
- */
-const useAuth = () => {
-    let { user, isAuthenticated, isLoading } = useAuth0();
-    return !user ? auth : auth = { ...auth, user, isAuthenticated, isLoading };
+const initialState = {
+    user: undefined,
+    isAuthenticated: false,
+    isLoading: false,
+    isAuth0: false
 };
 /**
  * Login a user
@@ -27,16 +15,41 @@ const useAuth = () => {
  * @return {VoidFunction}
  * 
  */
-const login = async values => {
+export const login = createAsyncThunk('auth/login', async (payload, { rejectWithValue }) => {
     try {
-        const user = await loginApi(values.email, values.password);
-        auth = { ...auth, user };
-    } catch (err) {
-        alert(err);
+        const user = await loginApi(payload.email, payload.password);
+        return user;
+    } catch (error) {
+        return rejectWithValue(error);
     }
-};
+});
 
-authActions = { ...authActions, useAuth };
-authActions = { ...authActions, login };
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: initialState,
+    reducers: {
+        logout: state => {}
+    },
+    extraReducers: builder => {
+        builder
+            // Login
+            .addCase(login.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isAuthenticated = true;
+                state.user = action.payload;
+            })
+            .addCase(login.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
+    }
+});
 
-export default authActions;
+export const { logout } = authSlice.actions;
+
+export const selectAuth = state => state.auth;
+
+export default authSlice.reducer;

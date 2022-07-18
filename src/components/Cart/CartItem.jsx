@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, updateOrderQuantity, removeProductOrder }) => {
+
+  const [quantity, setQuantity] = useState(product.quantity);
+
+  const handleOnChange = e => {
+
+    if (e.target.value > 0) {
+      setQuantity(e.target.value);
+      updateOrderQuantity(product, e.target.value);
+    }
+
+    if (e.target.value <= 0) {
+      removeProductOrder(product);
+    }
+  };
+
   return (
     <div className="row mb-4 d-flex justify-content-between align-items-center">
       <hr className="my-4" />
@@ -23,16 +38,17 @@ const CartItem = ({ product }) => {
           id="form1"
           min="0"
           name="quantity"
-          defaultValue={product.quantity}
+          defaultValue={quantity}
           type="number"
           className="form-control form-control-sm"
+          onChange={handleOnChange}
         />
       </div>
       <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6 className="mb-0">{`$ ${product.price * product.quantity}`}</h6>
+        <h6 className="mb-0">{`$ ${(product.price * product.quantity).toFixed(2)}`}</h6>
       </div>
       <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-        <button className="btn btn-danger btn-sm">remove</button>
+        <button className="btn btn-danger btn-sm" onClick={() => removeProductOrder(product)}>remove</button>
       </div>
       <hr className="my-4" />
     </div>

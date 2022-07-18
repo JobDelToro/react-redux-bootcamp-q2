@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { rootSlice } from '../slice';
+import useAuth from '../hooks/useAuth';
 
 import Logout from '../components/Logout';
 
 const Header = () => {
-  const { useAuth } = rootSlice;
   const { isAuthenticated } = useAuth();
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -28,10 +27,6 @@ const Header = () => {
               }
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" />
-            <button className="btn btn-outline-default" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>

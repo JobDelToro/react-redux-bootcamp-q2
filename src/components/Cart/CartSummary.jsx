@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartSummary = ({ orders }) => {
+const CartSummary = ({ orders, checkout, orderCreated }) => {
 
     const calculateTotal = orders => {
         let total = 0;
@@ -50,9 +50,21 @@ const CartSummary = ({ orders }) => {
           type="button"
           className="btn btn-dark btn-block btn-lg"
           data-mdb-ripple-color="dark"
+          onClick={() => checkout()}
         >
           Checkout
         </button>
+        <br />
+        <div className="d-flex justify-content-center">
+          <div className="row">
+             {
+                !orderCreated ?
+                  null
+                :
+                  <h5><span className="badge bg-success">{`${orderCreated.message} with ID: ${orderCreated.order}`}</span></h5>
+              }
+          </div>
+        </div>
       </div>
     </div>
   );

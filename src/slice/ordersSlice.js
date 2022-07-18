@@ -40,7 +40,6 @@ const addOrderAction = (state, action) => {
 */
 export const createOrder = createAsyncThunk('order/createOrder', async (_, { rejectWithValue, getState }) => {
     try {
-        console.log("CREATE ORDER")
         const res = await wizestoreApi.post('/orders', {});
         return res.data;
     } catch (error) {

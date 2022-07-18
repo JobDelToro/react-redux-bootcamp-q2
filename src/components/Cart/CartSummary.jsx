@@ -61,7 +61,7 @@ const CartSummary = ({ orders, checkout, orderCreated }) => {
                 !orderCreated ?
                   null
                 :
-                  <h5><span class="badge bg-success">{`${orderCreated.message} with ID: ${orderCreated.order}`}</span></h5>
+                  <h5><span className="badge bg-success">{`${orderCreated.message} with ID: ${orderCreated.order}`}</span></h5>
               }
           </div>
         </div>
